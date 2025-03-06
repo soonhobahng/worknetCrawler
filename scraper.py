@@ -141,6 +141,10 @@ class Scraper:
                     xml = driver.page_source
                     soup = BeautifulSoup(xml, features="xml")
 
+                    ## 종료 조건 추가
+                    if soup is None:
+                        break
+
                     data.append(soup.find("jobSmclNm").text)
                     job_text = soup.find('jobSum').text
                     data.append(job_text)
