@@ -125,9 +125,12 @@ class Scraper:
         filename = "job_info.xlsx"
         while 1:
             try:
+                jobAPI = f"https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo212L01.do?authKey=< Your API Key >&returnType=XML&target=JOBCD"
+                url = jobAPI  ## + quote_plus(keyword)
+                driver.get(url)
+
                 xml = driver.page_source
                 soup = BeautifulSoup(xml, features="xml")
-
 
                 jobLists = soup.find_all("jobList")
                 for jobList in jobLists:
